@@ -1,0 +1,188 @@
+﻿<Window x:Class="MAS_Implementation.SubmissionPopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:MAS_Implementation"
+        mc:Ignorable="d"
+        Title="SubmissionPopup" Height="450" Width="800"
+        ResizeMode="NoResize">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="36"/>
+            <RowDefinition Height="36"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="56"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0" Background="#FFF8E1">
+            <TextBlock Text="Warning!" FontWeight="Bold" FontSize="14" Foreground="#A6AC04"
+                       VerticalAlignment="Center" Margin="16,0"/>
+            <Button Content="X" HorizontalAlignment="Right" Margin="0,0,8,0"
+                    Click="CancelButton_Click" Background="Transparent" BorderThickness="0"
+                    FontSize="133" Cursor="Hand"/>
+        </Grid>
+        
+        <TextBlock x:Name="SubtitleText" Grid.Row="1"
+                   FontSize="13"
+                   VerticalAlignment="Center"/>
+        
+        <Grid Grid.Row="2" Margin="12,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel x:Name="RegulatedPanel" Grid.Column="0" Margin="4">
+                <TextBlock Text="Regulated" FontWeight="SemiBold" FontSize="13"/>
+                
+                <StackPanel x:Name="RegulatedForm" Visibility="Collapsed">
+                    <TextBlock Text="Regulatory permit or license" FontSize="11" Foreground="#555"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="RegulatedFileBtn" Content="Choose file"
+                                Click="RegulatedFileButton_Click"
+                                FontSize="11"
+                                Cursor="Hand"/>
+                        <TextBlock x:Name="RegulatedFileName" Grid.Column="1"
+                                   Text="No file chosen" FontSize="11"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+                    
+                    <TextBlock Text="Issuing Authority" FontSize="11" Foreground="#555"/>
+                    <TextBox x:Name="RegulatedAuthorityBox" Style="{StaticResource FormField}" Tag="Enter IA"/>
+                        
+                    <TextBlock Text="Validity Date" FontSize="11" Foreground="#555"/>
+                    <DatePicker x:Name="RegulatedValidityDate" FontSize="11"/>
+                    
+                    <CheckBox x:Name="RegulatedPendingCheck"
+                              Content="Mark as &quot;Pending&quot;"
+                              FontSize="11"/>
+                </StackPanel>
+                
+                <StackPanel x:Name="RegulatedFine" Visibility="Collapsed" Orientation="Horizontal">
+                    <TextBlock Text="Everything is fine here " FontSize="12"/>
+                    <TextBlock Text="✔" Foreground="Green" FontSize="14"/>
+                </StackPanel>
+            </StackPanel>
+            
+            <StackPanel x:Name="HighValuePanel" Grid.Column="1" Margin="4">
+                <TextBlock Text="High-Value" FontWeight="SemiBold" FontSize="13" Margin="4"/>
+                
+                <StackPanel x:Name="HighValueForm" Visibility="Collapsed">
+                    <TextBlock Text="Third-party Appraisal Document" FontSize="11" Foreground="#555"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Button x:Name="AppraisalFileButton" Content="Choose file"
+                                Click="AppraisalFileButton_Click"
+                                FontSize="11" Cursor="Hand"/>
+                        <TextBlock x:Name="AppraisalFileName"
+                                   Grid.Column="1"
+                                   Text="No file chosen"
+                                   FontSize="11"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+                    
+                    <TextBlock Text="Insurance Certificate"
+                               FontSize="11"
+                               Foreground="#555"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="InsuranceFileButton" Content="Choose file"
+                                Click="InsuranceFileButton_Click"
+                                FontSize="11" Cursor="Hand"/>
+                        <TextBlock x:Name="InsuranceFileName"
+                                   Grid.Column="1"
+                                   Text="No file chosen"
+                                   FontSize="11"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+                    
+                    <TextBlock Text="Storage location" FontSize="11"
+                                Foreground="#555"/>
+                    <ComboBox x:Name="StorageLocationBox" FontSize="11">
+                        <ComboBoxItem Content="Vault A"/>
+                        <ComboBoxItem Content="Vault B"/>
+                        <ComboBoxItem Content="External Storage"/>
+                    </ComboBox>
+                    
+                    <CheckBox x:Name="HighValuePendingCheck"
+                              Content="Mark as &quot;Pending&quot;" FontSize="11"/>
+                </StackPanel>
+                
+                <StackPanel x:Name="HighValueFine" Visibility="Collapsed"
+                            Orientation="Horizontal">
+                    <TextBlock Text="Everything is fine here " FontSize="12"/>
+                    <TextBlock Text="✔" Foreground="Green" FontSize="14"/>
+                </StackPanel>
+            </StackPanel>
+            
+            <StackPanel x:Name="ImportedPanel"
+                        Grid.Column="2" Margin="4">
+                <TextBlock Text="Imported" FontWeight="SemiBold"
+                           FontSize="13"/>
+                
+                <StackPanel x:Name="ImportedForm" Visibility="Collapsed">
+                    <TextBlock Text="Provenance Chain Documents" FontSize="11"
+                               Foreground="#555"/>
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="ProvenanceFileButton" Content="Choose file"
+                                Click="ProvenanceFileButton_Click"
+                                FontSize="11"
+                                Cursor="Hand"/>
+                        <TextBlock x:Name="ProvenanceFileName" Grid.Column="1"
+                                   Text="No file chosen" FontSize="11"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+                    
+                    <TextBlock Text="Customs Clearance Import Declaration Number"
+                               FontSize="11" Foreground="#555"/>
+                    <TextBox x:Name="CidnBox" Style="{StaticResource FormField}" Tag="Enter CIDN"/>
+                    
+                    <CheckBox x:Name="ImportedPendingCheck"
+                              Content="Mars as &quot;Pending&quot;"
+                              FontSize="11" />
+                </StackPanel>
+                
+                <StackPanel x:Name="ImportedFine" Visibility="Collapsed"
+                            Orientation="Horizontal">
+                    <TextBlock Text="Everything is fine here " FontSize="12"/>
+                    <TextBlock Text="✔" Foreground="Green" FontSize="14"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        
+        <Border Grid.Row="3" BorderBrush="#DDD" BorderThickness="0,1,0,0">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center">
+                <Button Content="Cancel"
+                        Click="CancelButton_Click"/>
+                
+                <Button Content="Submit Verification"
+                        Click="SubmitVerificationsButton_Click"
+                        Background="#555"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Margin="10,0,5,0"
+                        Cursor="Hand"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,244 @@
+﻿<Window x:Class="MAS_Implementation.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MAS_Implementation"
+        mc:Ignorable="d"
+        Title="AMS" Height="700" Width="1200">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid Grid.Column="0" Background="#FFF1C2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+            
+            <StackPanel Grid.Row="0" Margin="10,15,0,0" Orientation="Horizontal">
+                <Ellipse Width="30" Height="30" Fill="#999" VerticalAlignment="Top"/>
+                <StackPanel Margin="8,0,0,0">
+                    <TextBlock Text="Adam Adam" FontWeight="Bold" FontSize="13"/>
+                    <TextBlock Text="Cataloguer" FontSize="11" Foreground="#555"/>
+                </StackPanel>
+            </StackPanel>
+            
+            <StackPanel Grid.Row="1" Margin="0,15,0,0">
+                <Button Content="Auction List" Style="{StaticResource NavButton}" 
+                        Click="AuctionListTab_Click" 
+                        BorderThickness="1" BorderBrush="Black"
+                        Margin="0,0,0,3"/>
+                <Button Content="History" Style="{StaticResource NavButton}" 
+                        Click="HistoryTab_Click" 
+                        BorderThickness="1" BorderBrush="Black"
+                        Margin="0,0,0,3"/>
+                <Button Content="Catalog" Style="{StaticResource NavButton}" 
+                        Click="CatalogTab_Click" 
+                        BorderThickness="1" BorderBrush="Black"
+                        Margin="0,0,0,3"/>
+                <Button Content="Catalog a Lot" Style="{StaticResource NavButton}" 
+                        Click="CatalogLotTab_Click" 
+                        BorderThickness="1" BorderBrush="Black"
+                        Margin="0,0,0,3"/>
+                <Button Content="Analytics" Style="{StaticResource NavButton}" 
+                        Click="AnalyticsTab_Click" 
+                        BorderThickness="1" BorderBrush="Black"
+                        Margin="0,0,0,3"/>
+            </StackPanel>
+        </Grid>
+        
+        <TabControl Grid.Column="1" x:Name="MainTabs">
+            <!--Auction List Tab-->
+            <TabItem Header="Auction List">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <ListBox  x:Name="AuctionsList" DisplayMemberPath="Title" SelectionChanged="AuctionsList_OnSelectionChanged"/>
+                    <ListBox Grid.Column="1" x:Name="PaddlesList">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding PaddleNumber}"/>
+                                    <TextBlock Text=" - "/>
+                                    <TextBlock Text="{Binding Bidder.Name}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="History">
+                <TextBlock Text="Nothing here yet..."></TextBlock>
+            </TabItem>
+            
+            <TabItem Header="Catalog">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                
+                <ListBox x:Name="LotsList"
+                         DisplayMemberPath="Title"
+                         SelectionChanged="LotsList_OnSelectionChanged"/>
+                
+                <StackPanel Grid.Column="1" Margin="12">
+                    <TextBlock Text="Lot Details"
+                               FontWeight="Bold"
+                               FontSize="16"
+                               Margin="0,0,0,10"/>
+                    
+                    <TextBlock Text="Title:" FontWeight="Bold"/>
+                    <TextBlock x:Name="TitleText"/>
+                    
+                    <TextBlock Text="Description:" FontWeight="Bold"/>
+                    <TextBlock x:Name="DescriptionText"/>
+                    
+                    <TextBlock Text="Condition:" FontWeight="Bold"/>
+                    <TextBlock x:Name="ConditionText"/>
+                    
+                    <TextBlock Text="Estimate Low:" FontWeight="Bold"/>
+                    <TextBlock x:Name="EstimateLowText"/>
+                    
+                    <TextBlock Text="Estimate High:" FontWeight="Bold"/>
+                    <TextBlock x:Name="EstimateHighText"/>
+                    
+                    <TextBlock Text="Reserve Price:" FontWeight="Bold"/>
+                    <TextBlock x:Name="ReservePriceText"/>
+                    
+                    <TextBlock Text="Country of Origin:" FontWeight="Bold"/>
+                    <TextBlock x:Name="CountryOfOriginText"/>
+                </StackPanel>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="Catalog a Lot">
+                <Grid>
+                    <Grid.RowDefinitions>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+            
+                <Border Grid.Row="0" BorderBrush="#CCC" BorderThickness="0,0,0,1">
+                    <TextBlock Text="Catalog a Lot for Auction" FontWeight="SemiBold" FontSize="15" VerticalAlignment="Center" Margin="15,0"/>
+                </Border>
+                
+                <Grid Grid.Row="1" Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Text="Consignment Agreements" FontWeight="SemiBold"
+                               Margin="15,0" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Text="Category" FontWeight="SemiBold"
+                               Margin="15,0" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Text="Lot Details" FontWeight="SemiBold"
+                               Margin="15,0" VerticalAlignment="Center"/>
+                </Grid>
+                
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <ListBox x:Name="ConsignmentAgreementsBox"
+                             Grid.Column="0"
+                             SelectionChanged="ConsignmentAgreementsBox_SelectionChanged"
+                             DisplayMemberPath="Title"
+                             BorderThickness="0"
+                             Background="Transparent"
+                             Margin="4"/>
+                    <Rectangle Grid.Column="1" Fill="#CCC"/>
+                    
+                    <ListBox x:Name="CategoriesListBox"
+                             Grid.Column="2"
+                             SelectionChanged="CategoriesListBox_SelectionChanged"
+                             BorderThickness="0"
+                             Background="Transparent"
+                             Margin="4"/>
+                    <Rectangle Grid.Column="1" Fill="#CCC"/>
+                    
+                    <ScrollViewer Grid.Column="4" VerticalScrollBarVisibility="Auto">
+                        <StackPanel Margin="12,8">
+                            <TextBlock Text="Title" FontSize="11" Foreground="#555" Margin="0,8,0,2"/>
+                            <TextBox x:Name="TitleBox" Style="{StaticResource FormField}" Tag="Enter title:"/>
+                            
+                            <TextBlock Text="Description" FontSize="11" Foreground="#555" Margin="0,8,0,2"/>
+                            <TextBox x:Name="DescriptionBox" Style="{StaticResource FormField}" Tag="Enter description:"/>
+                            
+                            <TextBlock Text="Condition" FontSize="11" Foreground="#555" Margin="0,8,0,2"/>
+                            <TextBox x:Name="ConditionBox" Style="{StaticResource FormField}" Tag="Enter condition:"/>
+                            
+                            <TextBlock Text="Estimate Low" FontSize="11" Foreground="#555" Margin="0,8,0,2"/>
+                            <TextBox x:Name="EstimateLowBox" Style="{StaticResource FormField}" Tag="Enter estimate low:"/>
+                            
+                            <TextBlock Text="Estimate High" FontSize="11" Foreground="#555" Margin="0,8,0,2"/>
+                            <TextBox x:Name="EstimateHighBox" Style="{StaticResource FormField}" Tag="Enter estimate high:"/>
+                            
+                            <TextBlock Text="Reserve Price" FontSize="11" Foreground="#555" Margin="0,8,0,2"/>
+                            <TextBox x:Name="ReservePriceBox" Style="{StaticResource FormField}" Tag="Enter reserve price:"/>
+                            
+                            <TextBlock Text="Country of Origin" FontSize="11" Foreground="#555" Margin="0,8,0,2"/>
+                            <TextBox x:Name="CountryOfOriginBox" Style="{StaticResource FormField}" Tag="Enter country of origin:"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+               
+                <Grid Grid.Row="3" Background="#DDDAC5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock x:Name="SelectedAgreementText" Grid.Column="0"
+                               VerticalAlignment="Center" Margin="12,0"
+                               FontSize="11" Foreground="#444"/>
+                    
+                    <TextBlock x:Name="SelectedCategoryText" Grid.Column="1"
+                               VerticalAlignment="Center"
+                               FontSize="11" Foreground="#444"></TextBlock>
+                    
+                    <StackPanel Grid.Column="2" Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Margin="0,0,12,0">
+                        <Button x:Name="CancelButton"
+                                Content="Cancel" Click="CancelButton_Click"
+                                Background="#E66669" Foreground="Black"
+                                Padding="16,4" BorderThickness="0"
+                                Cursor="Hand"/>
+                        <Button x:Name="SubmitLotButton"
+                                Content="Submit Lot"
+                                Click="SubmitButton_Click"
+                                Background="#757575" Foreground="Black"
+                                Padding="16,4" BorderThickness="0"
+                                Margin="8,0,0,0" 
+                                Cursor="Hand"/>
+                    </StackPanel>
+                </Grid>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="Analytics">
+                <TextBlock Text="Nothing here yet..."></TextBlock>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
