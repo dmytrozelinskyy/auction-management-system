@@ -38,5 +38,14 @@ dotnet run --project MAS_Implementation
 The SQLite database is created automatically on first run and seeded with sample data. 
 
 ## Documentation 
+Full design documentation - including use case, analytical, and design class diagrams, actvity/state diagrams, and dynamic analysis - is available in 
+[`/docs/documentation.pdf`](docs/documentation.pdf)
 
-This project was developed with accompanying UML Documentation (class, activity, and state diagrams) and dynamic analysis as part of a university system-analysis course, and was defended as a full project.
+### Domain model
+
+![Design class diagram](docs/diagrams/class-diagram.design.png)
+
+### Lot lifecycle
+
+![State diagram](docs/diagrams/state-diagram.png)
+
